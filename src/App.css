@@ -1,49 +1,52 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&family=Poppins:wght@100;300;400;500;600&display=swap');
 
 :root {
-    --orange: #FF4600;
-    --yellow: #FCB718;
-    --black: #333;
-    --white: #fff;
+    --orange: #ff7800;
+    --black: #130f40;
     --light-color: #666;
-    --light-bg: #f4f4f4;
-    --box-shadow: 0 .5rem 1rem rgba(0,0,0.1);
-    --border: .1rem solid rgba(0,0,0.3);
-    --gradient: linear-gradient(90deg, var(--yellow), var(--orange));
-    --gradient-hover: linear-gradient(90deg, var(--orange), var(--yellow));
+    --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    --border: .2rem solid rgba(0,0,0,.1);
+    --outline: .1rem solid rgba(0,0,0,.1);
+    --outline-hover: .2rem solid var(--black);
 }
 
 * {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins' sans-serif;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     outline: none;
     border: none;
     text-decoration: none;
-    margin: 0;
-    padding: 0;
     text-transform: capitalize;
-}
-
-::selection {
-    background-color: var(--black);
-    color: var(--white);
+    transition: all .2s linear;
 }
 
 html {
     font-size: 62.5%;
+    overflow-x: hidden;
     scroll-behavior: smooth;
-    scroll-padding-top: 9rem;
+    scroll-padding-top: 7rem;
 }
 
-::-webkit-scrollbar {
-    width: 1rem;
+body {
+    background: #eee;
 }
 
-::-webkit-scrollbar-track {
-    background-color: var(--white);
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    border: .2rem solid var(--black);
+    color: var(--black);
+    cursor: pointer;
+    background: none;
 }
 
-::-webkit-scrollbar-thumb {
-    background-color: var(--black);
+.btn:hover {
+    background: var(--orange);
+    color: #fff;
 }

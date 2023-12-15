@@ -95,10 +95,6 @@
 }
 
 @media (max-width: 991px) {
-    html {
-        font-size: 55%;
-    }
-
     .header {
         padding: 2rem;
     }
@@ -132,11 +128,5 @@
         font-size: 2rem;
         margin: 2rem 2.5rem;
         display: block;
-    }
-}
-
-@media (max-width: 450px) {
-    html {
-        font-size: 50%;
     }
 }

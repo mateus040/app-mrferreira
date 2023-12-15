@@ -4,6 +4,7 @@ import Home from "../components/Home";
 import Features from "../components/Features";
 import Products from "../components/Products";
 import Categories from "../components/Categories";
+import Review from "../components/Review";
 
 const Main = () => {
     return (
@@ -27,6 +28,10 @@ const Main = () => {
 
             <section className="categories">
                 <Categories />
+            </section>
+
+            <section className="review">
+                <Review />
             </section>
         </div>
 

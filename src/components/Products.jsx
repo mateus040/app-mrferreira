@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "../styles/products.css";
@@ -15,12 +15,12 @@ const Products = () => {
                 spaceBetween={10}
                 loop={true}
                 autoplay={{ delay: 7500, disableOnInteraction: false }}
-                centeredSlides={true}
                 breakpoints={{
                     640: { slidesPerView: 1 },
                     768: { slidesPerView: 2 },
                     1020: { slidesPerView: 3 },
                 }}
+                initialSlide={0}
             >
                 <SwiperSlide>
                     <div className="product-slider box">

@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Home from "../components/Home";
 import Features from "../components/Features";
+import Products from "../components/Products";
 
 const Main = () => {
     return (
@@ -17,6 +18,10 @@ const Main = () => {
 
             <section className="features">
                 <Features />
+            </section>
+
+            <section className="products">
+                <Products />
             </section>
         </div>
 

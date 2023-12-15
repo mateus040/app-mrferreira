@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import '../styles/header.css';
+import logo from '../assets/logo.png';
 import FormLogin from "./FormLogin";
 
 const Header = () => {
@@ -27,7 +28,7 @@ const Header = () => {
     return (
         <div className="header">
             <a href="" className="logo">
-                <img src={process.env.PUBLIC_URL + "/images/logo.png"}></img>
+                <img src={logo}></img>
             </a>
 
             <nav className="navbar">

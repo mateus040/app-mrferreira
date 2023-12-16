@@ -12,6 +12,8 @@
 .home .content {
     text-align: center;
     width: 60rem;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .home .content h3 {
@@ -28,4 +30,21 @@
     font-size: 1.7rem;
     padding: 1rem 0;
     line-height: 1.8;
+}
+
+@media (max-width: 991px) {
+    .home .content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 450px) {
+    .home {
+        padding-top: 10rem;
+        padding-bottom: 5rem;
+    }
+
+    .home .content {
+        width: 90%;
+    }
 }

@@ -6,6 +6,7 @@ import Products from "../components/Products";
 import Categories from "../components/Categories";
 import Review from "../components/Review";
 import Blogs from "../components/Blogs";
+import Footer from "../components/Footer";
 
 const Main = () => {
     return (
@@ -38,6 +39,10 @@ const Main = () => {
             <section className="blogs">
                 <Blogs />
             </section>
+
+            <footer className="footer">
+                <Footer />
+            </footer>
         </div>
 
     )

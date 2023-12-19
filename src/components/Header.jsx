@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import '../styles/header.css';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.jpeg';
 import FormLogin from "./FormLogin";
 
 const Header = () => {

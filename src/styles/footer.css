@@ -86,4 +86,5 @@
 
 .footer .credit span {
     color: var(--black);
+    font-weight: bold;
 }

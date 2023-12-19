@@ -12,7 +12,7 @@
     box-shadow: var(--box-shadow);
 }
 
-.header .logo img{
+.header .logo img {
     height: 5rem;
 }
 
@@ -22,8 +22,10 @@
     color: var(--black);
 }
 
-.header .navbar a:hover {
-    color: var(--orange);
+.header .navbar a:is(:hover, :focus-visible) {
+    color: var(--light-color);
+    transform: translateX(20px);
+    position: relative;
 }
 
 .header .icons div {

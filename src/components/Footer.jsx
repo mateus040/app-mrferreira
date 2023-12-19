@@ -1,12 +1,13 @@
 import React from "react";
 import "../styles/footer.css";
+import logo from "../assets/logo.jpeg";
 
 const Footer = () => {
     return (
         <div className="footer" id="footer">
             <div className="box-container">
                 <div className="box">
-                    <h3>groco <i className="fas fa-shopping-basket"></i></h3>
+                    <img src={logo} className="img-footer"></img>
                     <p>Lorem ipsum dolor sit amet, adipiscing elit. Labore, aspernatur!</p>
                     <div className="share">
                         <a href="" className="fab fa-facebook-f"></a>

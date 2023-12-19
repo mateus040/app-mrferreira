@@ -5,7 +5,7 @@ import Features from "../components/Features";
 import Products from "../components/Products";
 import Categories from "../components/Categories";
 import Review from "../components/Review";
-import Blogs from "../components/Blogs";
+import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 const Main = () => {
@@ -36,8 +36,8 @@ const Main = () => {
                 <Review />
             </section>
 
-            <section className="blogs">
-                <Blogs />
+            <section className="contact">
+                <Contact />
             </section>
 
             <footer className="footer">

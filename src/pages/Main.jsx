@@ -7,6 +7,7 @@ import Categories from "../components/Categories";
 import Review from "../components/Review";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import About from "../components/About";
 
 const Main = () => {
     return (
@@ -34,6 +35,10 @@ const Main = () => {
 
             <section className="review">
                 <Review />
+            </section>
+
+            <section className="about">
+                <About />
             </section>
 
             <section className="contact">

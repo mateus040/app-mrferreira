@@ -1,7 +1,5 @@
 import React from "react";
 import "../styles/contact.css";
-import cadeira from "../assets/cadeira1.png";
-import escritorio from "../assets/escritorio.jpg";
 
 const Contact = () => {
     return (

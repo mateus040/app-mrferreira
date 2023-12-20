@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import '../styles/header.css';
 import logo from '../assets/logo.jpeg';
 import FormLogin from "./FormLogin";
 
 const Header = () => {
+
+    const [featuresDropdown, setFeaturesDropdown] = useState(false);
 
     useEffect(() => {
         let loginForm = document.querySelector('.login-form');
@@ -17,6 +19,7 @@ const Header = () => {
 
         document.querySelector('#menu-btn').onclick = () => {
             navbar.classList.toggle('active');
+            loginForm.classList.remove('active');
         }
 
         window.onscroll = () => {
@@ -25,6 +28,10 @@ const Header = () => {
         }
     })
 
+    const toggleFeaturesDropdown = () => {
+        setFeaturesDropdown(!featuresDropdown);
+    };
+
     return (
         <div className="header">
             <a href="" className="logo">
@@ -32,8 +39,16 @@ const Header = () => {
             </a>
 
             <nav className="navbar">
-                <a href="#home">Home</a>
-                <a href="#features">Features</a>
+            <a href="#home">Home</a>
+                <div className="dropdown">
+                    <a href="#" onClick={toggleFeaturesDropdown}>Features <i className="fa-solid fa-caret-down"></i></a>
+                    {featuresDropdown && (
+                        <div className="dropdown-content">
+                            <a href="#">Empresa 1</a>
+                            <a href="#">Empresa 2</a>
+                        </div>
+                    )}
+                </div>
                 <a href="#products">Products</a>
                 <a href="#review">Review</a>
                 <a href="#about">About</a>

@@ -39,12 +39,12 @@ const Header = () => {
             </a>
 
             <nav className="navbar">
-            <a href="#home">Home</a>
+            <a href="/">Home</a>
                 <div className="dropdown">
                     <a href="#" onClick={toggleFeaturesDropdown}>Features <i className="fa-solid fa-caret-down"></i></a>
                     {featuresDropdown && (
                         <div className="dropdown-content">
-                            <a href="#">Empresa 1</a>
+                            <a href="/empresa1">Empresa 1</a>
                             <a href="#">Empresa 2</a>
                         </div>
                     )}

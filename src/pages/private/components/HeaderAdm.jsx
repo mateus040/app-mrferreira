@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import "../pages/private/header.css";
-import logo from "../assets/logo-transparente.png";
-import icon_user from "../assets/icone-user.png";
+import "../styles/header.css";
+import logo from "../../../assets/logo-transparente.png";
+import icon_user from "../../../assets/icone-user.png";
 
 const HeaderAdm = () => {
 
@@ -25,7 +25,7 @@ const HeaderAdm = () => {
             </div>
             <ul className="nav-list">
                 <li>
-                    <a href="">
+                    <a href="/home/admin">
                         <i class="fa-solid fa-house"></i>
                         <span className="links-name">dashboard</span>
                     </a>

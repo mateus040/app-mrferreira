@@ -52,7 +52,7 @@ const Header = () => {
                 <a href="#products">Products</a>
                 <a href="#review">Review</a>
                 <a href="#about">About</a>
-                <a href="/administrativo">Contact</a>
+                <a href="/home/admin">Contact</a>
             </nav>
 
             <div className="icons">

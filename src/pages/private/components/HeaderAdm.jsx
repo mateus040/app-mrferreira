@@ -9,7 +9,7 @@ const HeaderAdm = () => {
         let btn = document.querySelector("#btn-icon");
         let sidebar = document.querySelector(".sidebar");
 
-        btn.onclick = function() {
+        btn.onclick = function () {
             sidebar.classList.toggle("active");
         }
     })
@@ -41,11 +41,11 @@ const HeaderAdm = () => {
                 </li>
 
                 <li>
-                    <a href="">
-                        <i class="fa-solid fa-comment"></i>
-                        <span className="links-name">messages</span>
+                    <a href="/fornecedores">
+                        <i class="fa-solid fa-building"></i>
+                        <span className="links-name">company</span>
                     </a>
-                    <span className="tooltip">messages</span>
+                    <span className="tooltip">company</span>
                 </li>
 
                 <li>
@@ -73,7 +73,9 @@ const HeaderAdm = () => {
                             <div className="job">Administrador</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-right-from-bracket" id="log-out"></i>
+                    <a href="/">
+                        <i class="fa-solid fa-right-from-bracket" id="log-out"></i>
+                    </a>
                 </div>
             </div>
         </div>

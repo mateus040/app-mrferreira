@@ -5,8 +5,6 @@ import HeaderAdm from "./components/HeaderAdm";
 
 const PageProvider = () => {
 
-    
-
     return (
         <div className="page-provider">
 
@@ -131,7 +129,7 @@ const PageProvider = () => {
                                     </div>
 
                                     <div className="column-1">
-                                        <label htmlFor="complemento">Complemento*</label>
+                                        <label htmlFor="complemento">Complemento</label>
                                         <input
                                             type="text"
                                             className="input-form"

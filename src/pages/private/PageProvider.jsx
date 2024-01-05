@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import Inputmask from "react-input-mask";
 import "../private/styles/provider.css";
 import HeaderAdm from "./components/HeaderAdm";
+import axios from 'axios';
 
 const PageProvider = () => {
+
+    const [companyField, setCompanyField] = useState({
+        name: "", cnpj: "", road: "", neighborhood: "", number: "", cep: "",
+        city: "", state: "", complement: "", email: "", phone: "", cellphone: ""
+    });
+
+    const changeCompanysFieldHandler = (e) => {
+        setCompanyField({
+            ...companyField,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const onSubmitChange = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post("http://127.0.0.1:8000/api/companys/add", companyField);
+            console.log(response);
+            alert("Dados registrados com sucesso!");
+            
+        } catch (err) {
+            console.error("Erro ao enviar solicitação:", err);
+            alert("Erro do servidor: " + err.response.data.message);
+        }
+    }
 
     return (
         <div className="page-provider">
@@ -43,6 +70,8 @@ const PageProvider = () => {
                                             placeholder="Digite o nome da empresa"
                                             id="name"
                                             name="name"
+                                            onChange={e => changeCompanysFieldHandler(e)}
+                                            required
                                         />
                                     </div>
 
@@ -53,6 +82,7 @@ const PageProvider = () => {
                                             placeholder="__.___.___/____-__"
                                             id="cnpj" name="cnpj"
                                             className="input-form"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -63,8 +93,9 @@ const PageProvider = () => {
                                             type="text"
                                             className="input-form"
                                             placeholder="Digite o nome da rua"
-                                            id="rua"
-                                            name="rua"
+                                            id="road"
+                                            name="road"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -75,8 +106,9 @@ const PageProvider = () => {
                                             type="text"
                                             className="input-form"
                                             placeholder="Digite o nome do bairro"
-                                            id="bairro"
-                                            name="bairro"
+                                            id="neighborhood"
+                                            name="neighborhood"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -87,8 +119,9 @@ const PageProvider = () => {
                                             type="number"
                                             className="input-form"
                                             placeholder="Digite o número"
-                                            id="numero"
-                                            name="numero"
+                                            id="number"
+                                            name="number"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -100,6 +133,7 @@ const PageProvider = () => {
                                             placeholder="___.___.___-__"
                                             id="cep" name="cep"
                                             className="input-form"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -109,9 +143,10 @@ const PageProvider = () => {
                                         <input
                                             type="text"
                                             className="input-form"
-                                            placeholder="Digite o nome da cidade"
-                                            id="cidade"
-                                            name="cidade"
+                                            placeholder="Digite a cidade"
+                                            id="city"
+                                            name="city"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -122,8 +157,9 @@ const PageProvider = () => {
                                             type="text"
                                             className="input-form"
                                             placeholder="Digite o estado"
-                                            id="estado"
-                                            name="estado"
+                                            id="state"
+                                            name="state"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -134,9 +170,9 @@ const PageProvider = () => {
                                             type="text"
                                             className="input-form"
                                             placeholder="Digite o complemento"
-                                            id="complemento"
-                                            name="complemento"
-                                            required
+                                            id="complement"
+                                            name="complement"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                         />
                                     </div>
 
@@ -148,6 +184,7 @@ const PageProvider = () => {
                                             placeholder="Digite o email"
                                             id="email"
                                             name="email"
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
                                     </div>
@@ -157,9 +194,9 @@ const PageProvider = () => {
                                         <Inputmask
                                             mask="(99) 9999-9999"
                                             placeholder="(__) ____-____"
-                                            id="telefone" name="telefone"
+                                            id="phone" name="phone"
                                             className="input-form"
-                                            required
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                         />
                                     </div>
 
@@ -168,13 +205,13 @@ const PageProvider = () => {
                                         <Inputmask
                                             mask="(99) 99999-9999"
                                             placeholder="(__) _____-____"
-                                            id="celular" name="celular"
+                                            id="cellphone" name="cellphone"
                                             className="input-form"
-                                            required
+                                            onChange={e => changeCompanysFieldHandler(e)}
                                         />
                                     </div>
-                                    
-                                    <button className="btn">Enviar</button>
+
+                                    <button className="btn" type="submit" onClick={e => onSubmitChange(e)}>Enviar</button>
                                 </div>
                             </form>
                         </article>

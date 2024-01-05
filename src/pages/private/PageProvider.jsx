@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Inputmask from "react-input-mask";
 import "../private/styles/provider.css";
 import HeaderAdm from "./components/HeaderAdm";
+import TableProvider from "./components/TableProvider";
 import axios from 'axios';
 
 const PageProvider = () => {
@@ -214,6 +215,8 @@ const PageProvider = () => {
                                     <button className="btn" type="submit" onClick={e => onSubmitChange(e)}>Enviar</button>
                                 </div>
                             </form>
+
+                            <TableProvider />
                         </article>
                     </section>
                 </main>

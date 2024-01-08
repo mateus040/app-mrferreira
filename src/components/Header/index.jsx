@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import '../styles/header.css';
-import logo from '../assets/logo.jpeg';
-import FormLogin from "./FormLogin";
+import './style.css';
+import logo from '../../assets/logo.jpeg';
+import FormLogin from "../../components/FormLogin";
 
 const Header = () => {
 

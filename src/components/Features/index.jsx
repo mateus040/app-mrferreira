@@ -1,8 +1,8 @@
 import React from "react";
-import "../styles/features.css";
-import cadeira1 from "../assets/cadeira1.png";
-import cadeira2 from "../assets/cadeira2.png";
-import cadeira3 from "../assets/cadeira3.png";
+import "./style.css";
+import cadeira1 from "../../assets/cadeira1.png";
+import cadeira2 from "../../assets/cadeira2.png";
+import cadeira3 from "../../assets/cadeira3.png";
 
 const Features = () => {
     return (

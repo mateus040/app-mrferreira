@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/categories.css";
-import cadeira from "../assets/cadeira2.png";
+import "./style.css";
+import cadeira from "../../assets/cadeira2.png";
 
 const Categories = () => {
     return (
@@ -8,13 +8,6 @@ const Categories = () => {
             <h1 className="heading">product <span>categories</span></h1>
 
             <div className="box-container">
-                <div className="box">
-                    <img src={cadeira}></img>
-                    <h3>fresh chair</h3>
-                    <p>upto 45% off</p>
-                    <a href="" className="btn">shop now</a>
-                </div>
-
                 <div className="box">
                     <img src={cadeira}></img>
                     <h3>fresh chair</h3>

@@ -2,8 +2,8 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Main from './pages/Main';
 import Empresa1 from './pages/Empresa1';
-import PageProvider from './pages/private/PageProvider';
-import HomePrivate from './pages/private/HomePrivate';
+import PageProvider from './pages/private/pages/Provider';
+import HomePrivate from './pages/private/pages/HomePrivate';
 
 function App() {
   return (

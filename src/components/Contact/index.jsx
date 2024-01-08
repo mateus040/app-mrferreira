@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/contact.css";
+import "./style.css";
 
 const Contact = () => {
     return (

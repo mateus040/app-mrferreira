@@ -1,8 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import "../styles/products.css";
-import cadeira1 from "../assets/cadeira1.png";
+import "./style.css";
+import cadeira1 from "../../assets/cadeira1.png";
 
 const Products = () => {
 

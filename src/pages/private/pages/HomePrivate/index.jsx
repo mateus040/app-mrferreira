@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderAdm from "./components/HeaderAdm";
+import HeaderAdm from "../../components/HeaderAdm";
 
 const HomePrivate = () => {
     return (

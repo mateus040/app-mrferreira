@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Inputmask from "react-input-mask";
-import "../private/styles/provider.css";
-import HeaderAdm from "./components/HeaderAdm";
-import TableProvider from "./components/TableProvider";
+import "./style.css";
+import HeaderAdm from "../../components/HeaderAdm";
+import TableProvider from "../../components/TableProvider";
 import axios from 'axios';
 
 const PageProvider = () => {

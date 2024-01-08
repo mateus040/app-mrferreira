@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import "../styles/header.css";
-import logo from "../../../assets/logo-transparente.png";
-import icon_user from "../../../assets/icone-user.png";
+import "./style.css";
+import logo from "../../../../assets/logo-transparente.png";
+import icon_user from "../../../../assets/icone-user.png";
 
 const HeaderAdm = () => {
 

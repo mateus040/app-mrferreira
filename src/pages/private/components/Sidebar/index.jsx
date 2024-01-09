@@ -3,7 +3,7 @@ import "./style.css";
 import logo from "../../../../assets/logo-transparente.png";
 import icon_user from "../../../../assets/icone-user.png";
 
-const HeaderAdm = () => {
+const Sidebar = () => {
 
     useEffect(() => {
         let btn = document.querySelector("#btn-icon");
@@ -33,19 +33,19 @@ const HeaderAdm = () => {
                 </li>
 
                 <li>
-                    <a href="">
-                        <i class="fa-solid fa-user"></i>
-                        <span className="links-name">user</span>
+                    <a href="/produtos">
+                        <i class="fa-solid fa-box"></i>
+                        <span className="links-name">produtos</span>
                     </a>
-                    <span className="tooltip">user</span>
+                    <span className="tooltip">produtos</span>
                 </li>
 
                 <li>
                     <a href="/fornecedores">
-                        <i class="fa-solid fa-building"></i>
-                        <span className="links-name">company</span>
+                        <i class="fa-solid fa-truck"></i>
+                        <span className="links-name">fornecedores</span>
                     </a>
-                    <span className="tooltip">company</span>
+                    <span className="tooltip">fornecedores</span>
                 </li>
 
                 <li>
@@ -82,4 +82,4 @@ const HeaderAdm = () => {
     )
 }
 
-export default HeaderAdm;
+export default Sidebar;

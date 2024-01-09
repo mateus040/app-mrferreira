@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Inputmask from "react-input-mask";
 import "./style.css";
-import HeaderAdm from "../../components/HeaderAdm";
+import Sidebar from "../../components/Sidebar";
 import TableProvider from "../../components/TableProvider";
 import axios from 'axios';
 
@@ -36,11 +36,9 @@ const PageProvider = () => {
     return (
         <div className="page-provider">
 
-            <HeaderAdm />
+            <Sidebar />
 
             <div className="content-provider">
-                {/*<h1 className="heading"><span>empresas</span></h1>*/}
-
                 <main>
                     <section className="content">
                         <div>

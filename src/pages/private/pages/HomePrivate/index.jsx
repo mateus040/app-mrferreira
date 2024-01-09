@@ -1,10 +1,10 @@
 import React from "react";
-import HeaderAdm from "../../components/HeaderAdm";
+import Sidebar from "../../components/Sidebar";
 
 const HomePrivate = () => {
     return (
         <div className="home-private">
-            <HeaderAdm />
+            <Sidebar />
         </div>
     )
 }

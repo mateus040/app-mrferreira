@@ -26,7 +26,6 @@ const PageProvider = () => {
             const response = await axios.post("http://127.0.0.1:8000/api/companys/add", companyField);
             console.log(response);
             alert("Dados registrados com sucesso!");
-            
         } catch (err) {
             console.error("Erro ao enviar solicitação:", err);
             alert("Erro do servidor: " + err.response.data.message);
@@ -128,8 +127,8 @@ const PageProvider = () => {
                                     <div className="column-1">
                                         <label htmlFor="cep">CEP*</label>
                                         <Inputmask
-                                            mask="999.999.999-99"
-                                            placeholder="___.___.___-__"
+                                            mask="99999-999"
+                                            placeholder="_____-___"
                                             id="cep" name="cep"
                                             className="input-form"
                                             onChange={e => changeCompanysFieldHandler(e)}

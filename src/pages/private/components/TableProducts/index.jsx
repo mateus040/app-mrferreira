@@ -17,7 +17,7 @@ const TableProducts = () => {
                 setCompanies(companiesResponse.data.results);
             } catch (err) {
                 console.error("Erro ao buscar produtos: ", err);
-                alert("Erro no servidor: " + err.response.data.response);
+                alert("Erro no servidor: " + err.response.data.message);
             }
         };
 

@@ -200,7 +200,9 @@ const Products = () => {
                                 </div>
                             </form>
 
-                            <TableProducts />
+                            <div className="content-table">
+                                <TableProducts />
+                            </div>
                         </article>
                     </section>
                 </main>

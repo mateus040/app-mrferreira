@@ -213,7 +213,9 @@ const PageProvider = () => {
                                 </div>
                             </form>
 
-                            <TableProvider />
+                            <div className="content-table">
+                                <TableProvider />
+                            </div>
                         </article>
                     </section>
                 </main>

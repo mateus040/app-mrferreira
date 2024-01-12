@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
 
-const TableProvider = () => {
+const TableProvider = ({ navigateToEditPage }) => {
 
     const [companys, setCompanys] = useState([]);
 
@@ -58,8 +58,10 @@ const TableProvider = () => {
                                 <td>{company.email}</td>
                                 <td>{company.phone}</td>
                                 <td>{company.cellphone}</td>
-                                <td className="btn-edit"><i class="fa-solid fa-pen-to-square"></i></td>
-                                <td className="btn-delete"><i class="fa-solid fa-trash"></i></td>
+                                <td className="btn-edit" onClick={() => navigateToEditPage(company)}>
+                                    <i className="fa-solid fa-pen-to-square"></i>
+                                </td>
+                                <td className="btn-delete"><i className="fa-solid fa-trash"></i></td>
                             </tr>
                         ))}
                     </tbody>

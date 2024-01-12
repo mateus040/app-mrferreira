@@ -5,6 +5,7 @@ import Empresa1 from './pages/Empresa1';
 import PageProvider from './pages/private/pages/Provider';
 import HomePrivate from './pages/private/pages/HomePrivate';
 import Products from './pages/private/pages/Products';
+import EditProvider from './pages/private/pages/Provider/edit';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route exact path='/home/admin' element={<HomePrivate />}></Route>
             <Route exact path='/produtos' element={<Products />}></Route>
             <Route exact path='/fornecedores' element={<PageProvider />}></Route>
+            <Route exact path='/fornecedores/update/:companyId' element={<EditProvider />}></Route>
           </Routes>
         </Router>
     </div>

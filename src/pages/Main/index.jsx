@@ -33,9 +33,7 @@ const Main = () => {
                 <Categories />
             </section>
 
-            <section className="review">
-                <Review />
-            </section>
+            
 
             <section className="about">
                 <About />

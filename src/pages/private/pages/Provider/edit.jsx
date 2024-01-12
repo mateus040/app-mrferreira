@@ -1,27 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 import Inputmask from "react-input-mask";
-import "./style.css";
 import Sidebar from "../../components/Sidebar";
-import TableProvider from "../../components/TableProvider";
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const PageProvider = () => {
 
+const EditProvider = () => {
+
+    const { companyId } = useParams();
     const navigate = useNavigate();
 
-    const navigateToEditPage = (company) => {
-        navigate(`/fornecedores/update/${company.id}`);
-    };
+    const [companyData, setCompanyData] = useState(null);
 
-    const [companyField, setCompanyField] = useState({
-        name: "", cnpj: "", road: "", neighborhood: "", number: "", cep: "",
-        city: "", state: "", complement: "", email: "", phone: "", cellphone: ""
-    });
+    useEffect(() => {
+        const fetchCompanyData = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/companys/${companyId}`);
+                setCompanyData(response.data.companys); // companys vindo da função show da API
+            } catch (err) {
+                console.error('Erro ao buscar dados do fornecedor:', err);
+                alert("Erro no servidor: " + err.response.data.message);
+            }
+        };
+
+        fetchCompanyData();
+    }, [companyId]);
 
     const changeCompanysFieldHandler = (e) => {
-        setCompanyField({
-            ...companyField,
+        setCompanyData({
+            ...companyData,
             [e.target.name]: e.target.value
         });
     }
@@ -30,17 +37,18 @@ const PageProvider = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/companys/add", companyField);
+            const response = await axios.put(`http://127.0.0.1:8000/api/companys/update/${companyId}`, companyData);
             console.log(response);
-            alert("Dados registrados com sucesso!");
+            alert("Dados atualizados com sucesso!");
+            navigate('/fornecedores');
         } catch (err) {
-            console.error("Erro ao enviar solicitação:", err);
-            alert("Erro do servidor: " + err.response.data.message);
+            console.error("Erro ao enviar solicitação: ", err);
+            alert("Erro no servidor: " + err.response.data.message);
         }
-    }
+    };
 
     return (
-        <div className="page-provider">
+        <div className="edit-provider">
 
             <Sidebar />
 
@@ -49,15 +57,15 @@ const PageProvider = () => {
                     <section className="content">
                         <div>
                             <div className="content-header">
-                                <h1 className="title">Empresas</h1>
+                                <h1 className="title">Editar empresas</h1>
                                 <ul className="breadcrumbs">
                                     <li>
-                                        <a href="">Novo</a>
+                                        <a href="">Cadastrados</a>
                                     </li>
                                     <li className="divider">/</li>
                                     <li>
                                         <a href="#" className="active">
-                                            Cadastrados
+                                            Editar
                                         </a>
                                     </li>
                                 </ul>
@@ -76,6 +84,7 @@ const PageProvider = () => {
                                             id="name"
                                             name="name"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.name ? companyData.name : ''}
                                             required
                                         />
                                     </div>
@@ -88,6 +97,7 @@ const PageProvider = () => {
                                             id="cnpj" name="cnpj"
                                             className="input-form"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.cnpj ? companyData.cnpj : ''}
                                             required
                                         />
                                     </div>
@@ -101,6 +111,7 @@ const PageProvider = () => {
                                             id="road"
                                             name="road"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.road ? companyData.road : ''}
                                             required
                                         />
                                     </div>
@@ -114,6 +125,7 @@ const PageProvider = () => {
                                             id="neighborhood"
                                             name="neighborhood"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.neighborhood ? companyData.neighborhood : ''}
                                             required
                                         />
                                     </div>
@@ -127,6 +139,7 @@ const PageProvider = () => {
                                             id="number"
                                             name="number"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.number ? companyData.number : ''}
                                             required
                                         />
                                     </div>
@@ -139,6 +152,7 @@ const PageProvider = () => {
                                             id="cep" name="cep"
                                             className="input-form"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.cep ? companyData.cep : ''}
                                             required
                                         />
                                     </div>
@@ -152,6 +166,7 @@ const PageProvider = () => {
                                             id="city"
                                             name="city"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.city ? companyData.city : ''}
                                             required
                                         />
                                     </div>
@@ -165,6 +180,7 @@ const PageProvider = () => {
                                             id="state"
                                             name="state"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.state ? companyData.state : ''}
                                             required
                                         />
                                     </div>
@@ -178,6 +194,7 @@ const PageProvider = () => {
                                             id="complement"
                                             name="complement"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.complement ? companyData.road : ''}
                                         />
                                     </div>
 
@@ -190,6 +207,7 @@ const PageProvider = () => {
                                             id="email"
                                             name="email"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.email ? companyData.email : ''}
                                             required
                                         />
                                     </div>
@@ -202,6 +220,7 @@ const PageProvider = () => {
                                             id="phone" name="phone"
                                             className="input-form"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.phone ? companyData.phone : ''}
                                         />
                                     </div>
 
@@ -213,16 +232,13 @@ const PageProvider = () => {
                                             id="cellphone" name="cellphone"
                                             className="input-form"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                            value={companyData && companyData.cellphone ? companyData.cellphone : ''}
                                         />
                                     </div>
 
                                     <button className="btn" type="submit" onClick={e => onSubmitChange(e)}>Enviar</button>
                                 </div>
                             </form>
-
-                            <div className="content-table">
-                                <TableProvider navigateToEditPage={navigateToEditPage}/>
-                            </div>
                         </article>
                     </section>
                 </main>
@@ -231,4 +247,4 @@ const PageProvider = () => {
     )
 }
 
-export default PageProvider;
+export default EditProvider;

@@ -1,23 +1,30 @@
-import React, { useEffect, useState } from "react";
-import "./style.css";
-import Sidebar from "../../components/Sidebar";
-import TableProducts from "../../components/TableProducts";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Sidebar from "../../components/Sidebar";
 
-const Products = () => {
+const EditProduct = () => {
 
+    const { productId } = useParams();
     const navigate = useNavigate();
 
-    const navigateToEditProduct = (product) => {
-        navigate(`/produtos/update/${product.id}`);
-    };
-
-    const [productsField, setProductsField] = useState({
-        name: "", description: "", length: "", height: "", depth: "", weight: "", photo: "", id_company: ""
-    });
+    const [productData, setProductData] = useState(null);
 
     const [companies, setCompanies] = useState([]);
+
+    useEffect(() => {
+        const fecthProductData = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/products/${productId}`);
+                setProductData(response.data.products);
+            } catch (err) {
+                console.error("Erro ao buscar dados do produto: ", err);
+                alert("Erro no servidor: " + err.response.data.message);
+            }
+        };
+
+        fecthProductData();
+    }, [productId]);
 
     useEffect(() => {
         const fetchCompanies = async () => {
@@ -33,16 +40,16 @@ const Products = () => {
     }, []);
 
     const changeProductsFieldHandler = (e) => {
-        setProductsField({
-            ...productsField,
+        setProductData({
+            ...productData,
             [e.target.name]: e.target.value
         });
     }
 
     const handlePhotoChange = (e) => {
-        setProductsField({
-            ...productsField,
-            photo: e.target.files[0], // Armazenando o a foto
+        setProductData({
+            ...productData,
+            photo: e.target.files[0],
         });
     };
 
@@ -50,34 +57,34 @@ const Products = () => {
         e.preventDefault();
 
         try {
-
             const formData = new FormData();
-            formData.append("name", productsField.name);
-            formData.append("description", productsField.description);
-            formData.append("length", productsField.length);
-            formData.append("height", productsField.height);
-            formData.append("depth", productsField.depth);
-            formData.append("weight", productsField.weight);
-            formData.append("photo", productsField.photo);
-            formData.append("id_company", productsField.id_company);
+            formData.append('_method', 'PUT');
+            formData.append("name", productData.name);
+            formData.append("description", productData.description);
+            formData.append("length", productData.length);
+            formData.append("height", productData.height);
+            formData.append("depth", productData.depth);
+            formData.append("weight", productData.weight);
+            formData.append("photo", productData.photo);
+            formData.append("id_company", productData.id_company);
 
-            const response = await axios.post("http://127.0.0.1:8000/api/products/add", formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data", // Cabeçalho para enviar arquivos
-                    },
-                }
-            );
+            const response = await axios.post(`http://127.0.0.1:8000/api/products/update/${productId}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
             console.log(response);
-            alert("Dados registrados com sucesso!");
+            alert("Dados atualizados com sucesso!");
+            navigate('/produtos');
         } catch (err) {
             console.error("Erro ao enviar solicitação: ", err);
             alert("Erro no servidor: " + err.response.data.message);
         }
-    };
+    }
 
     return (
-        <div className="products">
+        <div className="edit-product">
             <Sidebar />
 
             <div className="content-products">
@@ -85,15 +92,15 @@ const Products = () => {
                     <section className="content">
                         <div>
                             <div className="content-header">
-                                <h1 className="title">Produtos</h1>
+                                <h1 className="title">Editar produtos</h1>
                                 <ul className="breadcrumbs">
                                     <li>
-                                        <a href="">Novo</a>
+                                        <a href="">Cadastrados</a>
                                     </li>
                                     <li className="divider">/</li>
                                     <li>
                                         <a href="#" className="active">
-                                            Cadastrados
+                                            Editar
                                         </a>
                                     </li>
                                 </ul>
@@ -111,7 +118,8 @@ const Products = () => {
                                             placeholder="Digite o nome do produto"
                                             id="name" name="name"
                                             onChange={e => changeProductsFieldHandler(e)}
-
+                                            value={productData && productData.name ? productData.name : ''}
+                                            required
                                         />
                                     </div>
 
@@ -121,7 +129,8 @@ const Products = () => {
                                             className="input-form"
                                             id="id_company" name="id_company"
                                             onChange={(e) => changeProductsFieldHandler(e)}
-
+                                            value={productData && productData.id_company ? productData.id_company : ''}
+                                            required
                                         >
                                             <option value="">Selecione a empresa</option>
                                             {companies.map((company) => (
@@ -140,7 +149,8 @@ const Products = () => {
                                             placeholder="Digite o comprimento"
                                             id="length" name="length"
                                             onChange={e => changeProductsFieldHandler(e)}
-
+                                            value={productData && productData.length ? productData.length : ''}
+                                            required
                                         />
                                     </div>
 
@@ -152,7 +162,8 @@ const Products = () => {
                                             placeholder="Digite a altura"
                                             id="height" name="height"
                                             onChange={e => changeProductsFieldHandler(e)}
-
+                                            value={productData && productData.height ? productData.height : ''}
+                                            required
                                         />
                                     </div>
 
@@ -164,7 +175,8 @@ const Products = () => {
                                             placeholder="Digite a profundidade"
                                             id="depth" name="depth"
                                             onChange={e => changeProductsFieldHandler(e)}
-
+                                            value={productData && productData.depth ? productData.depth : ''}
+                                            required
                                         />
                                     </div>
 
@@ -176,7 +188,8 @@ const Products = () => {
                                             placeholder="Digite o peso"
                                             id="weight" name="weight"
                                             onChange={e => changeProductsFieldHandler(e)}
-
+                                            value={productData && productData.weight ? productData.weight : ''}
+                                            required
                                         />
                                     </div>
 
@@ -188,7 +201,8 @@ const Products = () => {
                                             placeholder="Digite a descrição"
                                             id="description" name="description"
                                             onChange={e => changeProductsFieldHandler(e)}
-
+                                            value={productData && productData.description ? productData.description : ''}
+                                            required
                                         />
                                     </div>
 
@@ -200,23 +214,19 @@ const Products = () => {
                                             id="photo" name="photo"
                                             accept="image/*"
                                             onChange={(e) => handlePhotoChange(e)}
-
+                                            required
                                         />
                                     </div>
 
                                     <button className="btn" type="submit" onClick={e => onSubmitChange(e)}>Enviar</button>
                                 </div>
                             </form>
-
-                            <div className="content-table">
-                                <TableProducts navigateToEditProduct={navigateToEditProduct}/>
-                            </div>
                         </article>
                     </section>
                 </main>
             </div>
         </div>
-    )
+    );
 }
 
-export default Products;
+export default EditProduct;

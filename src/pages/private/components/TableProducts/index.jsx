@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.css"
 import axios from "axios";
 
-const TableProducts = ({ navigateToEditProduct }) => {
+const TableProducts = ({ navigateToEditProduct, onDeleteProduct }) => {
 
     const [products, setProducts] = useState([]);
     const [companies, setCompanies] = useState([]);
@@ -66,7 +66,9 @@ const TableProducts = ({ navigateToEditProduct }) => {
                                 <td className="btn-edit" onClick={() => navigateToEditProduct(product)}>
                                     <i class="fa-solid fa-pen-to-square"></i>
                                     </td>
-                                <td className="btn-delete"><i class="fa-solid fa-trash"></i></td>
+                                <td className="btn-delete" onClick={() => onDeleteProduct(product.id)}>
+                                    <i class="fa-solid fa-trash"></i>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

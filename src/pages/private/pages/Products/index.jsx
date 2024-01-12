@@ -13,11 +13,12 @@ const Products = () => {
         navigate(`/produtos/update/${product.id}`);
     };
 
+    const [companies, setCompanies] = useState([]);
+    const [products, setProducts] = useState([]);
+
     const [productsField, setProductsField] = useState({
         name: "", description: "", length: "", height: "", depth: "", weight: "", photo: "", id_company: ""
     });
-
-    const [companies, setCompanies] = useState([]);
 
     useEffect(() => {
         const fetchCompanies = async () => {
@@ -72,6 +73,20 @@ const Products = () => {
             alert("Dados registrados com sucesso!");
         } catch (err) {
             console.error("Erro ao enviar solicitação: ", err);
+            alert("Erro no servidor: " + err.response.data.message);
+        }
+    };
+
+    const onDeleteProduct = async (productId) => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/products/delete/${productId}`);
+
+            const updatedProducts = products.filter(product => product.id !== productId);
+            setProducts(updatedProducts);
+            
+            alert("Produto deletado com sucesso!");
+        } catch (err) {
+            console.error("Erro ao deletar o produto: ", err);
             alert("Erro no servidor: " + err.response.data.message);
         }
     };
@@ -209,7 +224,7 @@ const Products = () => {
                             </form>
 
                             <div className="content-table">
-                                <TableProducts navigateToEditProduct={navigateToEditProduct}/>
+                                <TableProducts navigateToEditProduct={navigateToEditProduct} onDeleteProduct={onDeleteProduct}/>
                             </div>
                         </article>
                     </section>

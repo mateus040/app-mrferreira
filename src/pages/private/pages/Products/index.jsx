@@ -4,6 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import TableProducts from "../../components/TableProducts";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Products = () => {
 
@@ -162,7 +163,7 @@ const Products = () => {
                                             onChange={(e) => changeProductsFieldHandler(e)}
 
                                         >
-                                            <option value="">Selecione a empresa</option>
+                                            <option value="" disabled selected>Selecione a empresa</option>
                                             {companies.map((company) => (
                                                 <option key={company.id} value={company.id}>
                                                     {company.name}

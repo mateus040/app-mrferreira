@@ -14,6 +14,8 @@ const PageProvider = () => {
         navigate(`/fornecedores/update/${company.id}`);
     };
 
+    const [companys, setCompanys] = useState([]);
+
     const [companyField, setCompanyField] = useState({
         name: "", cnpj: "", road: "", neighborhood: "", number: "", cep: "",
         city: "", state: "", complement: "", email: "", phone: "", cellphone: ""
@@ -38,6 +40,20 @@ const PageProvider = () => {
             alert("Erro do servidor: " + err.response.data.message);
         }
     }
+
+    const onDeleteCompany = async (companyId) => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/companys/delete/${companyId}`);
+
+            const updatedCompanys = companys.filter(company => company.id !== companyId);
+            setCompanys(updatedCompanys);
+
+            alert("Fornecedor deletado com sucesso!");
+        } catch (err) {
+            console.error("Erro ao deletar fornecedor: ", err);
+            alert("Erro no servidor: " + err.response.data.message);
+        }
+    };
 
     return (
         <div className="page-provider">
@@ -221,7 +237,7 @@ const PageProvider = () => {
                             </form>
 
                             <div className="content-table">
-                                <TableProvider navigateToEditPage={navigateToEditPage}/>
+                                <TableProvider navigateToEditPage={navigateToEditPage} onDeleteCompany={onDeleteCompany}/>
                             </div>
                         </article>
                     </section>

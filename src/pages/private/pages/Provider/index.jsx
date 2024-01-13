@@ -5,6 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import TableProvider from "../../components/TableProvider";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const PageProvider = () => {
 
@@ -34,10 +35,22 @@ const PageProvider = () => {
         try {
             const response = await axios.post("http://127.0.0.1:8000/api/companys/add", companyField);
             console.log(response);
-            alert("Dados registrados com sucesso!");
+            toast.success("Dados registrados com sucesso!", {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
         } catch (err) {
-            console.error("Erro ao enviar solicitação:", err);
-            alert("Erro do servidor: " + err.response.data.message);
+            toast.error("Erro ao enviar solicitação: " + err.response.data.message, {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
+            console.error("Erro ao enviar solicitação: ", err)
+            console.error("Erro ao cadastrar o produto: " + err.response.data.message);
+            //alert("Erro no servidor: " + err.response.data.message);
         }
     }
 
@@ -48,10 +61,22 @@ const PageProvider = () => {
             const updatedCompanys = companys.filter(company => company.id !== companyId);
             setCompanys(updatedCompanys);
 
-            alert("Fornecedor deletado com sucesso!");
+            toast.success("Fornecedor deletado com sucesso!", {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
         } catch (err) {
-            console.error("Erro ao deletar fornecedor: ", err);
-            alert("Erro no servidor: " + err.response.data.message);
+            toast.error("Erro ao deletar o fornecedor: " + err.response.data.message, {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
+            console.error("Erro ao enviar solicitação: ", err)
+            console.error("Erro ao deletar o fornecedor: " + err.response.data.message);
+            //alert("Erro no servidor: " + err.response.data.message);
         }
     };
 
@@ -237,7 +262,7 @@ const PageProvider = () => {
                             </form>
 
                             <div className="content-table">
-                                <TableProvider navigateToEditPage={navigateToEditPage} onDeleteCompany={onDeleteCompany}/>
+                                <TableProvider navigateToEditPage={navigateToEditPage} onDeleteCompany={onDeleteCompany} />
                             </div>
                         </article>
                     </section>

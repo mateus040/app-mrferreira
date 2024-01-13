@@ -70,10 +70,22 @@ const Products = () => {
                 }
             );
             console.log(response);
-            alert("Dados registrados com sucesso!");
+            toast.success("Dados registrados com sucesso!", {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
         } catch (err) {
-            console.error("Erro ao enviar solicitação: ", err);
-            alert("Erro no servidor: " + err.response.data.message);
+            toast.error("Erro ao enviar solicitação: " + err.response.data.message, {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
+            console.error("Erro ao enviar solicitação: ", err)
+            console.error("Erro ao cadastrar o produto: " + err.response.data.message);
+            //alert("Erro no servidor: " + err.response.data.message);
         }
     };
 
@@ -84,10 +96,22 @@ const Products = () => {
             const updatedProducts = products.filter(product => product.id !== productId);
             setProducts(updatedProducts);
             
-            alert("Produto deletado com sucesso!");
+            toast.success("Forncedor deletado com sucesso!", {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
         } catch (err) {
-            console.error("Erro ao deletar o produto: ", err);
-            alert("Erro no servidor: " + err.response.data.message);
+            toast.error("Erro ao deletar o produto: " + err.response.data.message, {
+                theme: "colored",
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
+            console.error("Erro ao enviar solicitação: ", err)
+            console.error("Erro ao deletar o produto: " + err.response.data.message);
+            //alert("Erro no servidor: " + err.response.data.message);
         }
     };
 

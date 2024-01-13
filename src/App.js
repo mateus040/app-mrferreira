@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Main from './pages/Main';
 import Empresa1 from './pages/Empresa1';
 import PageProvider from './pages/private/pages/Provider';
@@ -22,6 +24,7 @@ function App() {
             <Route exact path='/fornecedores/update/:companyId' element={<EditProvider />}></Route>
           </Routes>
         </Router>
+        <ToastContainer />
     </div>
   );
 }

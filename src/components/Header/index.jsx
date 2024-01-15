@@ -35,11 +35,12 @@ const Header = () => {
     return (
         <div className="header">
             <a href="" className="logo">
-                <img src={logo}></img>
+                <h1>MR Ferreira</h1>
+                <p>Representações</p>
             </a>
 
             <nav className="navbar">
-            <a href="/">Home</a>
+                <a href="/">Home</a>
                 <div className="dropdown">
                     <a href="#" onClick={toggleFeaturesDropdown}>Features <i className="fa-solid fa-caret-down"></i></a>
                     {featuresDropdown && (

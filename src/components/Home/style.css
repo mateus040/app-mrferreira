@@ -1,50 +1,64 @@
 .home {
+    background: #000;
+}
+
+.home .flex {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: url('../../assets/home.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
-    padding-top: 17rem;
-    padding-bottom: 10rem;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-.home .content {
-    text-align: center;
-    width: 60rem;
-    max-width: 100%;
-    margin: 0 auto;
+.home .flex .image {
+    flex: 1 1 30rem;
+    position: relative;
+    overflow: hidden;
 }
 
-.home .content h3 {
-    color: var(--black);
+.home .flex .image img{
+    width: 100%;
+    height: 50rem;
+    object-fit: contain;
+}
+
+.home .flex .content {
+    flex: 1 1 50rem;
+}
+
+.home .flex .content h3 {
     font-size: 3rem;
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+    color: #fff;
 }
 
-.home .content h3 span {
-    color: var(--orange);
-}
-
-.home .content p {
-    color: var(--light-color);
-    font-size: 1.7rem;
-    padding: 1rem 0;
+.home .flex .content p {
     line-height: 1.8;
+    padding: 1rem 0;
+    font-size: 1.6rem;
+    color: var(--light-color);
+    text-transform: none;
 }
 
-@media (max-width: 991px) {
-    .home .content {
-        width: 80%;
-    }
+.home .btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    border: .2rem solid #fff;
+    color: #fff;
+    cursor: pointer;
+    background: none;
 }
 
-@media (max-width: 450px) {
-    .home {
-        padding-top: 10rem;
-        padding-bottom: 5rem;
-    }
+.home .btn:hover {
+    background: #fff;
+    color: var(--black);
+}
 
-    .home .content {
-        width: 90%;
+@media (max-width: 768px) {
+    .home .flex .content {
+        margin-top: 9rem;
     }
 }

@@ -32,6 +32,10 @@ html {
     scroll-padding-top: 7rem;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 body {
     background: #eee;
 }

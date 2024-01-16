@@ -1,4 +1,5 @@
 import React from "react";
+import './style.css';
 import Header from "../../components/Header";
 import Home from "../../components/Home";
 import Features from "../../components/Features";
@@ -13,41 +14,50 @@ const Main = () => {
     return (
 
         <div className="app">
-            <header className="header">
-                <Header />
-            </header>
+            <div className="components">
+                <header className="header">
+                    <Header />
+                </header>
 
-            <section className="home">
-                <Home />
-            </section>
+                <section className="home">
+                    <Home />
+                </section>
 
-            <section className="features">
-                <Features />
-            </section>
+                <section className="features">
+                    <Features />
+                </section>
 
-            <section className="products">
-                <Products />
-            </section>
+                <section className="products">
+                    <Products />
+                </section>
 
-            <section className="categories">
-                <Categories />
-            </section>             
+                <section className="categories">
+                    <Categories />
+                </section>
 
-            <section className="about">
-                <About />
-            </section>
+                <section className="about">
+                    <About />
+                </section>
 
-            <section className="contact">
-                <Contact />
-            </section>
+                <section className="contact">
+                    <Contact />
+                </section>
 
-            <section className="brands">
-                <Brands />
-            </section>   
+                <section className="brands">
+                    <Brands />
+                </section>
 
-            <footer className="footer">
-                <Footer />
-            </footer>
+                <footer className="footer">
+                    <Footer />
+                </footer>
+            </div>
+
+            <div className="icon-whats">
+                <a href="https://api.whatsapp.com/send?phone=5514991896619" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+
         </div>
 
     )

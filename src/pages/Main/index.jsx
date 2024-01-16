@@ -4,7 +4,7 @@ import Home from "../../components/Home";
 import Features from "../../components/Features";
 import Products from "../../components/Products";
 import Categories from "../../components/Categories";
-import Review from "../../components/Review";
+import Brands from "../../components/Brands";
 import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
 import About from "../../components/About";
@@ -31,9 +31,7 @@ const Main = () => {
 
             <section className="categories">
                 <Categories />
-            </section>
-
-            
+            </section>             
 
             <section className="about">
                 <About />
@@ -42,6 +40,10 @@ const Main = () => {
             <section className="contact">
                 <Contact />
             </section>
+
+            <section className="brands">
+                <Brands />
+            </section>   
 
             <footer className="footer">
                 <Footer />

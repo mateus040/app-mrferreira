@@ -9,7 +9,7 @@ const Home = () => {
             <div className="flex">
                 <div className="content">
                     <h3>O conforto que você merece!</h3>
-                    <p>Descubra aa nossas coleções e adquira peças que não apenas ocupam espaço, mas transformam ambientes!</p>
+                    <p>Descubra as nossas coleções e adquira peças que não apenas ocupam espaço, mas transformam ambientes!</p>
                     <a href="" className="btn">Venha conhecer</a>
                 </div>
 

@@ -4,7 +4,7 @@ import logo from "../../assets/logo-transparente.png";
 
 const About = () => {
     return (
-        <div className="about" id="about">
+        <div className="about anim" id="about">
             <h3 className="heading">about <span>company</span></h3>
             <div className="box-container">
                 <div className="box">

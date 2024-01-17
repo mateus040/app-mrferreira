@@ -25,6 +25,19 @@
     flex: 1 1 50rem;
 }
 
+.home .flex .anim {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: moveup 1.2s linear forwards;
+}
+
+@keyframes moveup {
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 .home .flex .content h3 {
     font-size: 3rem;
     text-transform: uppercase;

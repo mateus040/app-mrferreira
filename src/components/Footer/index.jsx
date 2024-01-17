@@ -4,7 +4,7 @@ import logo from "../../assets/logo.jpeg";
 
 const Footer = () => {
     return (
-        <div className="footer" id="footer">
+        <div className="footer anim" id="footer">
             <div className="box-container">
                 <div className="box">
                     <img src={logo} className="img-footer"></img>

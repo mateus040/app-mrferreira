@@ -22,7 +22,7 @@
     border: none;
     text-decoration: none;
     text-transform: capitalize;
-    transition: all .2s linear;
+    /*transition: all .2s linear;*/
 }
 
 html {
@@ -79,6 +79,19 @@ footer {
 .btn:hover {
     background: var(--black);
     color: #fff;
+}
+
+.anim {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: moveup 1s linear forwards;
+}
+
+@keyframes moveup {
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
 
 @media (max-width: 991px) {

@@ -4,7 +4,7 @@ import cadeira from "../../assets/cadeira2.png";
 
 const Categories = () => {
     return (
-        <div className="categories" id="categories">
+        <div className="categories anim" id="categories">
             <h1 className="heading">product <span>categories</span></h1>
 
             <div className="box-container">

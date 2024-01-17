@@ -9,7 +9,7 @@ import jahuflex from "../../assets/jahuflex.png";
 
 const Brands = () => {
     return (
-        <div className="brands" id="brands">
+        <div className="brands anim" id="brands">
 
             <div className="brands-content">
                 <div className="brands-container">

@@ -7,7 +7,7 @@ import cadeira1 from "../../assets/cadeira1.png";
 const Products = () => {
 
     return (
-        <div className="products" id="products">
+        <div className="products anim" id="products">
             <h1 className="heading">our <span>products</span></h1>
 
             <Swiper

@@ -1,7 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
+import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    function sendEmail(e) {
+        e.preventDefault();
+
+        if (name === '' || email === '' || message === '') {
+            toast.error("Preencha todos os campos!", {
+                theme: 'colored',
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
+            return;
+        }
+
+        const templateParams = {
+            from_name: name,
+            email: email,
+            message: message
+        }
+
+        emailjs.send("service_1abjk2t", "template_62jt1f9", templateParams, "T8MWfJ1-F8f4_UT5r")
+        .then((response) => {
+            console.log("Email enviado!", response.status, response.text);
+            toast.success("Email enviado com sucesso!", {
+                theme: 'colored',
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
+
+            setName('')
+            setEmail('')
+            setMessage('')
+        }, (err) => {
+            console.log("Erro: ", err);
+            toast.error("Ocorreu um erro ao enviar o email!", {
+                theme: 'colored',
+                style: {
+                    fontSize: '1.6rem',
+                },
+            });
+        })
+    }
+
     return (
         <div className="contact anim" id="contact">
             <h1 className="heading">our <span>contact</span></h1>
@@ -41,15 +91,35 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div className="form">
-                    <div className="flex">
-                        <input type="text" name="name" maxLength="30" placeholder="Your Name" className="input" />
-                        <input type="number" name="number" maxLength="10" placeholder="Your Number" className="input" />
-                    </div>
-                    <input type="email" name="email" maxLength="10" placeholder="Your Email" className="input" />
-                    <textarea name="message" className="input" cols="30" maxLength="1000" rows="10"></textarea>
+                <form className="form" onSubmit={sendEmail}>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        className="input"
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        className="input"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                    <textarea 
+                        name="message" 
+                        className="input" 
+
+                        rows="10"
+                        onChange={(e) => setMessage(e.target.value)}
+                        value={message}
+                    />
+
                     <input type="submit" value="send message" className="btn" />
-                </div>
+                </form>
+
             </div>
         </div>
     )

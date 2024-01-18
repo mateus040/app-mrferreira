@@ -52,7 +52,7 @@ const Main = () => {
                 </footer>
             </div>
 
-            <div className="icon-whats">
+            <div className="icon-whats anim">
                 <a href="https://api.whatsapp.com/send?phone=5514991896619" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>

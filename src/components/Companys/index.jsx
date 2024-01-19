@@ -43,9 +43,9 @@ const ViewCompanys = () => {
                 {companies.map((company, index) => (
                     <SwiperSlide key={index}>
                         <div className="company-slider box">
-                            <img src={company.logo}></img>
+                            <img src={`http://127.0.0.1:8000/storage/${company.logo}`}></img>
                             <p>{company.name}</p>
-                            <button className="btn">Acessar</button>
+                            <button className="btn">ver produtos</button>
                         </div>
                     </SwiperSlide>
                 ))}

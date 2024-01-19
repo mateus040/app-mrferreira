@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 const TableProvider = ({ navigateToEditPage, onDeleteCompany }) => {
+
+    const { token } = useAuth();
 
     const [companys, setCompanys] = useState([]);
 
     useEffect(() => {
         const fetchCompanys = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/companys');
+                const response = await axios.get('http://127.0.0.1:8000/api/companys', {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
                 setCompanys(response.data.results);
             } catch (err) {
                 console.error('Erro ao buscar fornecedores:', err);

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./style.css"
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 const TableProducts = ({ navigateToEditProduct, onDeleteProduct }) => {
+
+    const { token } = useAuth();
 
     const [products, setProducts] = useState([]);
     const [companies, setCompanies] = useState([]);
@@ -10,10 +13,18 @@ const TableProducts = ({ navigateToEditProduct, onDeleteProduct }) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const productsResponse = await axios.get("http://127.0.0.1:8000/api/products");
+                const productsResponse = await axios.get("http://127.0.0.1:8000/api/products", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
                 setProducts(productsResponse.data.results);
 
-                const companiesResponse = await axios.get("http://127.0.0.1:8000/api/companys");
+                const companiesResponse = await axios.get("http://127.0.0.1:8000/api/companys", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
                 setCompanies(companiesResponse.data.results);
             } catch (err) {
                 console.error("Erro ao buscar produtos: ", err);

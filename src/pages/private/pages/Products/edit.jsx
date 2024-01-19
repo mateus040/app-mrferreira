@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
+import { useAuth } from "../../context/AuthContext";
 
 const EditProduct = () => {
+
+    const { token } = useAuth();
 
     const { productId } = useParams();
     const navigate = useNavigate();
@@ -15,7 +18,11 @@ const EditProduct = () => {
     useEffect(() => {
         const fecthProductData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/products/${productId}`);
+                const response = await axios.get(`http://127.0.0.1:8000/api/products/${productId}`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
                 setProductData(response.data.products);
             } catch (err) {
                 console.error("Erro ao buscar dados do produto: ", err);
@@ -29,7 +36,11 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/companys");
+                const response = await axios.get("http://127.0.0.1:8000/api/companys", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
                 setCompanies(response.data.results);
             } catch (err) {
                 console.error("Erro ao obter empresas: ", err);
@@ -71,6 +82,7 @@ const EditProduct = () => {
             const response = await axios.post(`http://127.0.0.1:8000/api/products/update/${productId}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${token}`,
                 },
             });
 

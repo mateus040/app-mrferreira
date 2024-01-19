@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import "./style.css";
+import { useAuth } from "../../context/AuthContext";
 import logo from "../../../../assets/logo-transparente.png";
 import icon_user from "../../../../assets/icone-user.png";
 
 const Sidebar = () => {
+
+    const { logout } = useAuth();
 
     useEffect(() => {
         let btn = document.querySelector("#btn-icon");
@@ -12,7 +15,13 @@ const Sidebar = () => {
         btn.onclick = function () {
             sidebar.classList.toggle("active");
         }
-    })
+
+        let logoutBtn = document.querySelector('#log-out');
+        logoutBtn.onclick = function () {
+            logout();
+            alert("deslogado")
+        }
+    }, [logout]);
 
     return (
         <div className="sidebar">

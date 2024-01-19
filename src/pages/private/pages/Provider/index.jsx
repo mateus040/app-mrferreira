@@ -6,8 +6,11 @@ import TableProvider from "../../components/TableProvider";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useAuth } from "../../context/AuthContext";
 
 const PageProvider = () => {
+
+    const { token } = useAuth(); 
 
     const navigate = useNavigate();
 
@@ -33,7 +36,11 @@ const PageProvider = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/companys/add", companyField);
+            const response = await axios.post("http://127.0.0.1:8000/api/companys/add", companyField, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
             console.log(response);
             toast.success("Dados registrados com sucesso!", {
                 theme: "colored",
@@ -56,7 +63,11 @@ const PageProvider = () => {
 
     const onDeleteCompany = async (companyId) => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/api/companys/delete/${companyId}`);
+            await axios.delete(`http://127.0.0.1:8000/api/companys/delete/${companyId}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
 
             const updatedCompanys = companys.filter(company => company.id !== companyId);
             setCompanys(updatedCompanys);

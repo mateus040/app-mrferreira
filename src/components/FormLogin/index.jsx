@@ -1,53 +1,75 @@
 import React, { useState } from "react";
 import "./style.css";
+import { useAuth } from "../../pages/private/context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-import axios from "axios";
+import { toast } from "react-toastify";
 
 const FormLogin = () => {
 
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://127.0.0.1:800/api/login", {
-                email, password,
+            const response = await fetch("http://127.0.0.1:8000/api/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
             });
 
-            const token = response.data.token;
-
-            localStorage.setItem("token", token);
-
-            navigate("/home/admin");
-        } catch (err) {
-            toast.error("Erro ao fazer login: " + err.response.data.message, {
-                theme: "colored",
+            if (response.ok) {
+                const data = await response.json();
+                login(data.token);
+                navigate("/home/admin");
+            } else {
+                const errorData = await response.json();
+                if (response.status === 401) {
+                    toast.error("Credenciais inválidas", {
+                        theme: 'colored',
+                        style: {
+                            fontSize: "1.6rem",
+                        },
+                    });
+                } else {
+                    toast.error("Erro ao fazer login: " + errorData.error, {
+                        theme: 'colored',
+                        style: {
+                            fontSize: "1.6rem",
+                        },
+                    });
+                }
+            }
+        } catch (error) {
+            toast.error("Erro ao fazer login: " + error.message, {
+                theme: 'colored',
                 style: {
-                    fontSize: '1.6rem',
+                    fontSize: "1.6rem",
                 },
             });
-            console.error("Erro ao fazer login: ", err.response.data.message);
+            console.error("Erro ao fazer login: ", error);
         }
-    }
+    };
 
     return (
         <form onSubmit={handleLogin} className="login-form">
             <h3>Login Now</h3>
-            <input 
-                type="email" 
+            <input
+                type="email"
                 placeholder="Your Email"
                 className="box"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <input 
-                type="password" 
-                placeholder="Your Password" 
+            <input
+                type="password"
+                placeholder="Your Password"
                 className="box"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

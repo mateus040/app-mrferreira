@@ -5,14 +5,17 @@ import TableProducts from "../../components/TableProducts";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { useAuth } from "../../context/AuthContext";
 
 const Products = () => {
+
+    const { token } = useAuth();
 
     const navigate = useNavigate();
 
     const navigateToEditProduct = (product) => {
         navigate(`/produtos/update/${product.id}`);
-    };
+    };  
 
     const [companies, setCompanies] = useState([]);
     const [products, setProducts] = useState([]);
@@ -24,7 +27,11 @@ const Products = () => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/companys");
+                const response = await axios.get("http://127.0.0.1:8000/api/companys", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
                 setCompanies(response.data.results);
             } catch (err) {
                 console.error("Erro ao obter empresas: ", err);
@@ -67,6 +74,7 @@ const Products = () => {
                 {
                     headers: {
                         "Content-Type": "multipart/form-data", // Cabeçalho para enviar arquivos
+                        "Authorization": `Bearer ${token}`
                     },
                 }
             );
@@ -92,11 +100,15 @@ const Products = () => {
 
     const onDeleteProduct = async (productId) => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/api/products/delete/${productId}`);
+            await axios.delete(`http://127.0.0.1:8000/api/products/delete/${productId}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
 
             const updatedProducts = products.filter(product => product.id !== productId);
             setProducts(updatedProducts);
-            
+
             toast.success("Forncedor deletado com sucesso!", {
                 theme: "colored",
                 style: {
@@ -249,7 +261,7 @@ const Products = () => {
                             </form>
 
                             <div className="content-table">
-                                <TableProducts navigateToEditProduct={navigateToEditProduct} onDeleteProduct={onDeleteProduct}/>
+                                <TableProducts navigateToEditProduct={navigateToEditProduct} onDeleteProduct={onDeleteProduct} />
                             </div>
                         </article>
                     </section>

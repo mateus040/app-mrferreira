@@ -3,10 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Inputmask from "react-input-mask";
 import Sidebar from "../../components/Sidebar";
 import axios from "axios";
-
+import { useAuth } from "../../context/AuthContext";
 
 const EditProvider = () => {
 
+    const { token } = useAuth();
+    
     const { companyId } = useParams();
     const navigate = useNavigate();
 
@@ -15,7 +17,11 @@ const EditProvider = () => {
     useEffect(() => {
         const fetchCompanyData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/api/companys/${companyId}`);
+                const response = await axios.get(`http://127.0.0.1:8000/api/companys/${companyId}`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
                 setCompanyData(response.data.companys); // companys vindo da função show da API
             } catch (err) {
                 console.error('Erro ao buscar dados do fornecedor:', err);
@@ -37,7 +43,11 @@ const EditProvider = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/companys/update/${companyId}`, companyData);
+            const response = await axios.put(`http://127.0.0.1:8000/api/companys/update/${companyId}`, companyData, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            });
             console.log(response);
             alert("Dados atualizados com sucesso!");
             navigate('/fornecedores');

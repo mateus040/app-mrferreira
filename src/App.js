@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Main from './pages/Main';
@@ -9,22 +9,32 @@ import HomePrivate from './pages/private/pages/HomePrivate';
 import Products from './pages/private/pages/Products';
 import EditProvider from './pages/private/pages/Provider/edit';
 import EditProduct from './pages/private/pages/Products/edit';
+import { AuthProvider, useAuth } from './pages/private/context/AuthContext';
+
+const PrivateRoute = ({ element, ...rest }) => {
+  const { token } = useAuth();
+
+  return token ? element : <Navigate to="/" />;
+};
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
         <Router>
           <Routes>
             <Route exact path='/' element={<Main />}></Route>
             <Route exact path='/empresa1' element={<Empresa1 />}></Route>
-            <Route exact path='/home/admin' element={<HomePrivate />}></Route>
-            <Route exact path='/produtos' element={<Products />}></Route>
-            <Route exact path='/produtos/update/:productId' element={<EditProduct />}></Route>
-            <Route exact path='/fornecedores' element={<PageProvider />}></Route>
-            <Route exact path='/fornecedores/update/:companyId' element={<EditProvider />}></Route>
+            
+            <Route exact path='/home/admin' element={<PrivateRoute element={<HomePrivate />} />} />
+            <Route exact path='/produtos' element={<PrivateRoute element={<Products />} />} />
+            <Route exact path='/produtos/update/:productId' element={<PrivateRoute element={<EditProduct />} />} />
+            <Route exact path='/fornecedores' element={<PrivateRoute element={<PageProvider />} />} />
+            <Route exact path='/fornecedores/update/:companyId' element={<PrivateRoute element={<EditProvider />} />} />
           </Routes>
         </Router>
-        <ToastContainer />
+      </AuthProvider>
+      <ToastContainer />
     </div>
   );
 }

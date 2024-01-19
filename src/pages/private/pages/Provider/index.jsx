@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Inputmask from "react-input-mask";
 import "./style.css";
 import Sidebar from "../../components/Sidebar";
@@ -7,10 +7,11 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { useAuth } from "../../context/AuthContext";
+import { useForm } from "react-hook-form";
 
 const PageProvider = () => {
 
-    const { token } = useAuth(); 
+    const { token } = useAuth();
 
     const navigate = useNavigate();
 
@@ -19,6 +20,8 @@ const PageProvider = () => {
     };
 
     const [companys, setCompanys] = useState([]);
+
+    const { setValue } = useForm();
 
     const [companyField, setCompanyField] = useState({
         name: "", cnpj: "", road: "", neighborhood: "", number: "", cep: "",
@@ -91,6 +94,32 @@ const PageProvider = () => {
         }
     };
 
+    useEffect(() => {
+        setValue('road', companyField.road || '');
+        setValue('neighborhood', companyField.neighborhood || '');
+        setValue('city', companyField.city || '');
+        setValue('state', companyField.state || '');
+    }, [companyField]);
+
+    const checkCEP = (e) => {
+        const cep = e.target.value.replace(/\D/g, '');
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setCompanyField({
+                    ...companyField,
+                    road: data.logradouro,
+                    neighborhood: data.bairro,
+                    city: data.localidade,
+                    state: data.uf
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao obter informações do CEP:", error);
+            });
+    }
+
     return (
         <div className="page-provider">
 
@@ -119,7 +148,7 @@ const PageProvider = () => {
                         <article className="content-article">
                             <form>
                                 <div className="content-form">
-                                    <div className="column-3">
+                                    <div className="column-2">
                                         <label htmlFor="name">Nome*</label>
                                         <input
                                             type="text"
@@ -144,6 +173,20 @@ const PageProvider = () => {
                                         />
                                     </div>
 
+                                    <div className="column-1">
+                                        <label htmlFor="cep">CEP*</label>
+                                        <Inputmask
+                                            mask="99999-999"
+                                            placeholder="_____-___"
+                                            id="cep" name="cep"
+                                            className="input-form"
+                                            value={companyField.cep}
+                                            onChange={e => changeCompanysFieldHandler(e)}
+                                            onBlur={checkCEP}
+                                            required
+                                        />
+                                    </div>
+
                                     <div className="column-2">
                                         <label htmlFor="rua">Rua*</label>
                                         <input
@@ -152,6 +195,7 @@ const PageProvider = () => {
                                             placeholder="Digite o nome da rua"
                                             id="road"
                                             name="road"
+                                            value={companyField.road}
                                             onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
@@ -165,6 +209,7 @@ const PageProvider = () => {
                                             placeholder="Digite o nome do bairro"
                                             id="neighborhood"
                                             name="neighborhood"
+                                            value={companyField.neighborhood}
                                             onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
@@ -184,18 +229,6 @@ const PageProvider = () => {
                                     </div>
 
                                     <div className="column-1">
-                                        <label htmlFor="cep">CEP*</label>
-                                        <Inputmask
-                                            mask="99999-999"
-                                            placeholder="_____-___"
-                                            id="cep" name="cep"
-                                            className="input-form"
-                                            onChange={e => changeCompanysFieldHandler(e)}
-                                            required
-                                        />
-                                    </div>
-
-                                    <div className="column-1">
                                         <label htmlFor="cidade">Cidade*</label>
                                         <input
                                             type="text"
@@ -203,6 +236,7 @@ const PageProvider = () => {
                                             placeholder="Digite a cidade"
                                             id="city"
                                             name="city"
+                                            value={companyField.city}
                                             onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         />
@@ -213,6 +247,7 @@ const PageProvider = () => {
                                         <select
                                             className="input-form"
                                             id="state" name="state"
+                                            value={companyField.state}
                                             onChange={e => changeCompanysFieldHandler(e)}
                                             required
                                         >
@@ -247,7 +282,7 @@ const PageProvider = () => {
                                         </select>
                                     </div>
 
-                                    <div className="column-1">
+                                    <div className="column-2">
                                         <label htmlFor="complemento">Complemento</label>
                                         <input
                                             type="text"

@@ -9,6 +9,7 @@ import Brands from "../../components/Brands";
 import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
 import About from "../../components/About";
+import ViewCompanys from "../../components/Companys";
 
 const Main = () => {
     return (
@@ -37,6 +38,10 @@ const Main = () => {
 
                 <section className="about">
                     <About />
+                </section>
+
+                <section className="review">
+                    <ViewCompanys />
                 </section>
 
                 <section className="contact">

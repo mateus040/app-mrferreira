@@ -25,7 +25,7 @@ const PageProvider = () => {
 
     const [companyField, setCompanyField] = useState({
         name: "", cnpj: "", road: "", neighborhood: "", number: "", cep: "",
-        city: "", state: "", complement: "", email: "", phone: "", cellphone: ""
+        city: "", state: "", complement: "", email: "", phone: "", cellphone: "", logo: ""
     });
 
     const changeCompanysFieldHandler = (e) => {
@@ -35,18 +35,41 @@ const PageProvider = () => {
         });
     }
 
+    const handleLogoChange = (e) => {
+        setCompanyField({
+            ...companyField,
+            logo: e.target.files[0],
+        });
+    }
+
     const onSubmitChange = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/companys/add", companyField, {
+            const formData = new FormData();
+            formData.append("name", companyField.name);
+            formData.append("cnpj", companyField.cnpj);
+            formData.append("road", companyField.road);
+            formData.append("neighborhood", companyField.neighborhood);
+            formData.append("number", companyField.number);
+            formData.append("cep", companyField.cep);
+            formData.append("city", companyField.city);
+            formData.append("state", companyField.state);
+            formData.append("complement", companyField.complement);
+            formData.append("email", companyField.email);
+            formData.append("phone", companyField.phone);
+            formData.append("cellphone", companyField.cellphone);
+            formData.append("logo", companyField.logo);
+
+            const response = await axios.post("http://127.0.0.1:8000/api/companys/add", formData, {
                 headers: {
-                    "Authorization": `Bearer ${token}`,
-                }
+                    "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${token}`
+                },
             });
             console.log(response);
             toast.success("Dados registrados com sucesso!", {
-                theme: "colored",
+                theme: 'colored',
                 style: {
                     fontSize: '1.6rem',
                 },
@@ -282,7 +305,7 @@ const PageProvider = () => {
                                         </select>
                                     </div>
 
-                                    <div className="column-2">
+                                    <div className="column-1">
                                         <label htmlFor="complemento">Complemento</label>
                                         <input
                                             type="text"
@@ -291,6 +314,18 @@ const PageProvider = () => {
                                             id="complement"
                                             name="complement"
                                             onChange={e => changeCompanysFieldHandler(e)}
+                                        />
+                                    </div>
+
+                                    <div className="column-1">
+                                        <label htmlFor="logo">Logo*</label>
+                                        <input
+                                            type="file"
+                                            className="input-form"
+                                            id="logo" name="logo"
+                                            accept="image/*"
+                                            onChange={(e) => handleLogoChange(e)}
+
                                         />
                                     </div>
 

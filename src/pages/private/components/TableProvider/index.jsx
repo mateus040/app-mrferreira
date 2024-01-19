@@ -45,6 +45,7 @@ const TableProvider = ({ navigateToEditPage, onDeleteCompany }) => {
                             <th>Email</th>
                             <th>Telefone</th>
                             <th>Celular</th>
+                            <th>Logo</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -65,6 +66,14 @@ const TableProvider = ({ navigateToEditPage, onDeleteCompany }) => {
                                 <td>{company.email}</td>
                                 <td>{company.phone}</td>
                                 <td>{company.cellphone}</td>
+                                <td>
+                                    {company.logo && (
+                                        <img
+                                            src={`http://127.0.0.1:8000/storage/${company.logo}`}
+                                            style={{ maxWidth: "50px", maxHeight: "50px" }}
+                                        />
+                                    )}
+                                </td>
                                 <td className="btn-edit" onClick={() => navigateToEditPage(company)}>
                                     <i className="fa-solid fa-pen-to-square"></i>
                                 </td>

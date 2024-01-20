@@ -11,6 +11,10 @@ import { useForm } from "react-hook-form";
 
 const PageProvider = () => {
 
+    useEffect(() => {
+        document.title = 'Empresas - Admin'
+    })
+
     const { token } = useAuth();
 
     const navigate = useNavigate();

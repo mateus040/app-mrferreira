@@ -9,6 +9,10 @@ import { useAuth } from "../../context/AuthContext";
 
 const Products = () => {
 
+    useEffect(() => {
+        document.title = 'Produtos - Admin'
+    })
+
     const { token } = useAuth();
 
     const navigate = useNavigate();

@@ -12,29 +12,6 @@
     /*box-shadow: var(--box-shadow);*/
 }
 
-.header .navbar .dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.header .navbar .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #000;
-    z-index: 1;
-}
-
-.header .navbar .dropdown-content a {
-    color: #fff;
-    padding: 10px;
-    text-decoration: none;
-    display: block;
-}
-
-.header .navbar .dropdown .dropdown-content {
-    display: block;
-}
-
 /*.header .logo img {
     height: 5rem;
 }*/

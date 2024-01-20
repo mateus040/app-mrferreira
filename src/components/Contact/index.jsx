@@ -54,7 +54,7 @@ const Contact = () => {
 
     return (
         <div className="contact anim" id="contact">
-            <h1 className="heading">our <span>contact</span></h1>
+            <h1 className="heading">Envie um <span>email</span></h1>
             <div className="content-container">
                 <div className="box-container">
                     <div className="box">

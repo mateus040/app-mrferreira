@@ -1,10 +1,14 @@
-.features .box-container{
+.products-container {
+    padding-top: 12rem;
+}
+
+.products-container .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     gap: 1.5rem;
 }
 
-.features .box-container .box {
+.products-container .box-container .box {
     padding: 3rem 2rem;
     background: #fff;
     border-radius: .5rem;
@@ -15,23 +19,22 @@
     transition: all .2s linear;
 }
 
-.features .box-container .box:hover {
+.products-container .box-container .box:hover {
     outline: var(--outline-hover);
     outline-offset: 0rem;
 }
 
-.features .box-container .box img {
+.products-container .box-container .box img {
     margin: 1rem 0;
     height: 15rem;
 }
 
-.features .box-container .box h3 {
+.products-container .box-container .box h3 {
     font-size: 2.5rem;
     line-height: 1.8;
-    color: var(--black);
 }
 
-.features .box-container .box p {
+.products-container .box-container .box p {
     font-size: 1.5rem;
     line-height: 1.8;
     color: var(--light-color);

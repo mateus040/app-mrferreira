@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import cadeira from "../../assets/cadeira3.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ViewCompanys = () => {
 
@@ -45,7 +46,9 @@ const ViewCompanys = () => {
                         <div className="company-slider box">
                             <img src={`http://127.0.0.1:8000/storage/${company.logo}`}></img>
                             <p>{company.name}</p>
-                            <button className="btn">ver produtos</button>
+                            <Link to={`/empresa/${company.id}`} className="btn">
+                                ver produtos
+                            </Link>
                         </div>
                     </SwiperSlide>
                 ))}

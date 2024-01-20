@@ -1,12 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { useAuth } from "../../context/AuthContext";
 import logo from "../../../../assets/logo-transparente.png";
-import icon_user from "../../../../assets/icone-user.png";
+import axios from "axios";
 
 const Sidebar = () => {
 
-    const { logout } = useAuth();
+    const { logout, token } = useAuth();
+
+    const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:8000/api/user", {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+                setUserInfo(response.data);
+            } catch (err) {
+                console.error("Erro ao obter informações do usuário: ", err);
+            }
+        };
+
+        if (token) {
+            fetchUserInfo();
+        };
+    }, [token]);
+
+    const handleLogout = () => {
+        logout();
+        alert("Deslogado");
+    }
 
     useEffect(() => {
         let btn = document.querySelector("#btn-icon");
@@ -15,13 +41,7 @@ const Sidebar = () => {
         btn.onclick = function () {
             sidebar.classList.toggle("active");
         }
-
-        let logoutBtn = document.querySelector('#log-out');
-        logoutBtn.onclick = function () {
-            logout();
-            alert("deslogado")
-        }
-    }, [logout]);
+    });
 
     return (
         <div className="sidebar">
@@ -56,35 +76,18 @@ const Sidebar = () => {
                     </a>
                     <span className="tooltip">fornecedores</span>
                 </li>
-
-                <li>
-                    <a href="">
-                        <i class="fa-solid fa-chart-pie"></i>
-                        <span className="links-name">Analytics</span>
-                    </a>
-                    <span className="tooltip">analytics</span>
-                </li>
-
-                <li>
-                    <a href="">
-                        <i class="fa-solid fa-gear"></i>
-                        <span className="links-name">settings</span>
-                    </a>
-                    <span className="tooltip">settings</span>
-                </li>
             </ul>
             <div className="profile-content">
                 <div className="profile">
                     <div className="profile-details">
-                        <img src={icon_user}></img>
                         <div className="name-job">
-                            <div className="name">Prem Shahi</div>
+                            <div className="name">{userInfo?.name || "Convidado"}</div>
                             <div className="job">Administrador</div>
                         </div>
                     </div>
-                    <a href="/">
+                    <button onClick={handleLogout}>
                         <i class="fa-solid fa-right-from-bracket" id="log-out"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

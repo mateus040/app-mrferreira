@@ -9,6 +9,7 @@ export default function CompanysProducts() {
   const { companyId } = useParams();
 
   const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fecthProducts = async () => {
@@ -25,6 +26,17 @@ export default function CompanysProducts() {
     fecthProducts();
   }, [companyId]);
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  }
+
+  const filteredProducts = products.filter((product) => {
+    const productNameLower = product.name.toLowerCase();
+    const searchTerms = searchTerm.split(" ").map(term => term.trim().toLowerCase());
+    
+    return searchTerms.every(term => productNameLower.includes(term));
+  });
+
   return (
     <div className='companys-products'>
       <header className="header">
@@ -34,8 +46,21 @@ export default function CompanysProducts() {
       <section className="products-container">
         {/*<div className="heading">the <span>empresa1</span></div>*/}
 
+        <div className="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type='text'
+            id='search'
+            name='search'
+            className='input-search'
+            placeholder='Pesquisar produto...'
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
+
         <div className="box-container">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div className="box" key={product.id}>
               {product.photo && (
                 <img

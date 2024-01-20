@@ -2,6 +2,28 @@
     padding-top: 12rem;
 }
 
+.products-container .search-bar {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.products-container .search-bar i {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+}
+
+.products-container .search-bar input {
+    width: 100%;
+    padding: .8rem;
+    font-size: 1.6rem;
+    border-radius: .6rem;
+    text-indent: 1rem;
+    text-transform: none;
+}
+
 .products-container .box-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));

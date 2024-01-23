@@ -3,6 +3,7 @@ import "./style.css";
 import axios from 'axios';
 import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
+import Modal from '../../components/Modal';
 
 export default function CompanysProducts() {
 
@@ -10,6 +11,7 @@ export default function CompanysProducts() {
 
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fecthProducts = async () => {
@@ -33,9 +35,17 @@ export default function CompanysProducts() {
   const filteredProducts = products.filter((product) => {
     const productNameLower = product.name.toLowerCase();
     const searchTerms = searchTerm.split(" ").map(term => term.trim().toLowerCase());
-    
+
     return searchTerms.every(term => productNameLower.includes(term));
   });
+
+  const openModal = (product) => {
+    setSelectedProduct(product);
+  }
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+  }
 
   return (
     <div className='companys-products'>
@@ -69,10 +79,12 @@ export default function CompanysProducts() {
               )}
               <h3>{product.name}</h3>
               <p>{product.description}</p>
-              <a href="" className="btn">detalhes</a>
+              <button className="btn" onClick={() => openModal(product)}>detalhes</button>
             </div>
           ))}
         </div>
+
+        <Modal product={selectedProduct} onClose={closeModal} />
       </section>
     </div>
   )

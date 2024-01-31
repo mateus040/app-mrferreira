@@ -10,6 +10,7 @@ import Contact from "../../components/Contact";
 import Footer from "../../components/Footer";
 import About from "../../components/About";
 import ViewCompanys from "../../components/Companys";
+import Sobre from "../../components/Sobre";
 
 const Main = () => {
     return (
@@ -22,6 +23,10 @@ const Main = () => {
 
                 <section className="home">
                     <Home />
+                </section>
+
+                <section className="sobre">
+                    <Sobre />
                 </section>
 
                 <section className="features">

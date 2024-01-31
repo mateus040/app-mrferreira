@@ -1,0 +1,29 @@
+.sobre {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.heading-sobre {
+    text-align: center;
+    margin-bottom: 5rem;
+    font-size: 3.5rem;
+}
+
+strong {
+    text-transform: none;
+    color: #000;
+}
+
+.logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.logos-container img {
+    height: 10rem;
+}

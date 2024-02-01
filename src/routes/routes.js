@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Main from '../pages/Main';
-import PageProvider from '../pages/private/pages/Provider';
-import HomePrivate from '../pages/private/pages/HomePrivate';
-import Products from '../pages/private/pages/Products';
-import EditProvider from '../pages/private/pages/Provider/edit';
-import EditProduct from '../pages/private/pages/Products/edit';
+import PageProvider from '../pages/Admin/Provider';
+import HomePrivate from '../pages/Admin/HomePrivate';
+import Products from '../pages/Admin/Products';
+import EditProvider from '../pages/Admin/Provider/edit';
+import EditProduct from '../pages/Admin/Products/edit';
 import CompanysProducts from '../pages/CompanysProducts';
-import { AuthProvider, useAuth } from '../pages/private/context/AuthContext';
+import { AuthProvider, useAuth } from '../context/AuthContext';
 
 const PrivateRoute = ({ element, ...rest }) => {
     const { token } = useAuth();

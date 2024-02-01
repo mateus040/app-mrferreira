@@ -1,13 +1,12 @@
 import React from "react";
 import "./style.css";
-import logo from "../../assets/logo.jpeg";
 
 const Footer = () => {
     return (
-        <div className="footer anim" id="footer">
+        <footer className="footer anim" id="footer">
             <div className="box-container">
                 <div className="box">
-                    <img src={logo} className="img-footer"></img>
+                    <img src="/images/logos/logo.jpeg" className="img-footer"></img>
                     <p>Lorem ipsum dolor sit amet, adipiscing elit. Labore, aspernatur!</p>
                     <div className="share">
                         <a href="" className="fab fa-facebook-f"></a>
@@ -44,7 +43,7 @@ const Footer = () => {
             </div>
 
             <div className="credit"> by <span> &copy;MR Ferreira Representações </span> | all rights reserved </div>
-        </div>
+        </footer>
     )
 }
 

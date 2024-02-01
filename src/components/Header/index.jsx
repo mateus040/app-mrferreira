@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import './style.css';
-import FormLogin from "../../components/FormLogin";
+import FormLogin from "./FormLogin";
 
 const Header = () => {
 

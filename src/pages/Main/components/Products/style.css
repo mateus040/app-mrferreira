@@ -42,3 +42,18 @@
     color: var(--orange);
     padding: .5rem 0;
 }
+
+.text-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text-page p {
+    font-size: 1.5rem;
+    color: rgb(128, 128, 128);
+    text-transform: none;
+    margin-top: -2.5rem;
+    margin-bottom: 1.5rem;
+}

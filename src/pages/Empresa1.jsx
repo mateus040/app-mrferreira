@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import 'swiper/css';
 import "../styles/empresa1.css";
 import Header from "../components/Header";
-import cadeira from "../assets/cadeira1.png";
 import axios from "axios";
 
 const Empresa1 = () => {

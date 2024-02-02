@@ -24,12 +24,12 @@ const Main = () => {
             <Sobre />
           </section>
 
-          <section className="features">
-            <Features />
-          </section>
-
           <section className="products">
             <Products />
+          </section>
+
+          <section className="features">
+            <Features />
           </section>
 
           <section className="categories">

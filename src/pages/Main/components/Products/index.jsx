@@ -1,157 +1,70 @@
-import React from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import "./style.css";
+import axios from "axios";
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
-    return (
-        <div className="products anim" id="products">
-            <h1 className="heading">our <span>products</span></h1>
+  useEffect(() => {
+    const fecthProducts = async () => {
+      try {
+        const productsResponse = await axios.get(
+          "http://127.0.0.1:8000/api/products"
+        );
+        setProducts(productsResponse.data.results);
 
-            <Swiper
-                className="product-slider"
-                spaceBetween={10}
-                loop={true}
-                autoplay={{ delay: 7500, disableOnInteraction: false }}
-                breakpoints={{
-                    640: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    1020: { slidesPerView: 3 },
-                }}
-                initialSlide={0}
-            >
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 1</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
+        const companiesResponse = await axios.get(
+          "http://127.0.0.1:8000/api/companys"
+        );
+        setCompanies(companiesResponse.data.results);
+      } catch (err) {
+        console.error("Erro ao buscar dados: ", err);
+        alert("Erro no servidor: " + err.response.data.message);
+      }
+    };
 
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 2</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
+    fecthProducts();
+  }, []);
 
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 3</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
+  return (
+    <div className="products anim" id="products">
+      <div className="text-page">
+        <h1 className="heading">Conheça algum de nossos produtos</h1>
+        <p>Fique por dentro das últimas novidades</p>
+      </div>
 
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 4</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 5</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 6</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 7</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    <div className="product-slider box">
-                        <img src="/images/products/cadeira1.png" alt="Fresh Chair" />
-                        <h3>fresh chair 8</h3>
-                        <div className="price">$50.00/- - 69.00/- </div>
-                        <div className="stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                        </div>
-                        <a href="" className="btn">add to cart</a>
-                    </div>
-                </SwiperSlide>
-
-            </Swiper>
-        </div>
-    );
-}
+      <Swiper
+        className="product-slider"
+        spaceBetween={10}
+        loop={true}
+        autoplay={{ delay: 7500, disableOnInteraction: false }}
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1020: { slidesPerView: 3 },
+        }}
+        initialSlide={0}
+      >
+        {products.map((product, index) => (
+          <SwiperSlide key={index}>
+            <div className="product-slider box">
+              {product.photo && (
+                <img src={`http://127.0.0.1:8000/storage/${product.photo}`} />
+              )}
+              <h3>{product.name}</h3>
+              <p>{companies.find((company) => company.id === product.id_company)?.name}</p>
+              <a href="" className="btn">
+                Detalhes
+              </a>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
 
 export default Products;

@@ -4,8 +4,9 @@ import "./style.css";
 export default function Sobre() {
   return (
     <div className="sobre">
-      <div className="heading-sobre">
-        <strong>Veja nossas empresas parceiras!</strong>
+      <div className="text-page">
+        <h1 className="heading">Veja nossas empresas parceiras</h1>
+        <p>Conheça as empresa que fazem parte de nosso trabalho</p>
       </div>
 
       <div className="logos-container">

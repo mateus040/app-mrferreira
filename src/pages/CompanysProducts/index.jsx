@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from '../../components/Header';
 import { useParams } from 'react-router-dom';
 import Modal from '../../components/Modal';
+import Contact from '../Main/components/Contact';
 
 export default function CompanysProducts() {
 

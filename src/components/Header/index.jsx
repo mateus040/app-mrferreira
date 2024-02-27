@@ -33,12 +33,12 @@ const Header = () => {
             </a>
 
             <nav className="navbar">
-                <a href="/">Home</a>
-                <a href="#">Features</a>
-                <a href="#products">Products</a>
-                <a href="#review">Review</a>
-                <a href="#about">About</a>
-                <a href="/home/admin">Contact</a>
+                <a href="/">Início</a>
+                <a href="#products">Produtos</a>
+                <a href="#features">Features</a>
+                <a href="#company">Empresas</a>
+                <a href="#about">Sobre</a>
+                <a href="#contact">Contato</a>
             </nav>
 
             <div className="icons">

@@ -17,7 +17,7 @@ const Footer = () => {
                 </div>
 
                 <div className="box">
-                    <h3>contact info</h3>
+                    <h3>Contato</h3>
                     <a href="" className="links"><i className="fas fa-phone"></i> +123-456-7890</a>
                     <a href="" className="links"><i className="fas fa-phone"></i> +111-222-3333</a>
                     <a href="" className="links"><i className="fas fa-envelope"></i> shaikhanas@gmail.com</a>
@@ -25,13 +25,13 @@ const Footer = () => {
                 </div>
 
                 <div className="box">
-                    <h3>quick links</h3>
-                    <a href="" className="links"><i className="fas fa-arrow-right"></i> Home</a>
-                    <a href="" className="links"><i className="fas fa-arrow-right"></i> Features</a>
-                    <a href="" className="links"><i className="fas fa-arrow-right"></i> Products</a>
-                    <a href="" className="links"><i className="fas fa-arrow-right"></i> Categories</a>
-                    <a href="" className="links"><i className="fas fa-arrow-right"></i> Review</a>
-                    <a href="" className="links"><i className="fas fa-arrow-right"></i> Blogs</a>
+                    <h3>Links</h3>
+                    <a href="#home" className="links"><i className="fas fa-arrow-right"></i> Início</a>
+                    <a href="#products" className="links"><i className="fas fa-arrow-right"></i> Produtos</a>
+                    <a href="#features" className="links"><i className="fas fa-arrow-right"></i> Features</a>
+                    <a href="#company" className="links"><i className="fas fa-arrow-right"></i> Empresas</a>
+                    <a href="#about" className="links"><i className="fas fa-arrow-right"></i> Sobre</a>
+                    <a href="#contact" className="links"><i className="fas fa-arrow-right"></i> Contato</a>
                 </div>
 
                 <div className="box">
@@ -42,7 +42,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="credit"> by <span> &copy;MR Ferreira Representações </span> | all rights reserved </div>
+            <div className="credit"> Por <span> &copy;MR Ferreira Representações </span> | Todos os direitos reservados. </div>
         </footer>
     )
 }

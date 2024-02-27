@@ -62,7 +62,7 @@ const Contact = () => {
                             <i className="fas fa-map-marker-alt"></i>
                         </div>
                         <div className="text">
-                            <h3>address</h3>
+                            <h3>Endereço</h3>
                             <p>Jaú - São Paulo</p>
                             <p>17209838</p>
                         </div>
@@ -73,7 +73,7 @@ const Contact = () => {
                             <i className="fas fa-phone"></i>
                         </div>
                         <div className="text">
-                            <h3>phone</h3>
+                            <h3>Telefone</h3>
                             <p>+123 345 6789</p>
                             <p>+111 222 333</p>
                         </div>
@@ -84,7 +84,7 @@ const Contact = () => {
                             <i className="fas fa-envelope"></i>
                         </div>
                         <div className="text">
-                            <h3>email</h3>
+                            <h3>E-mail</h3>
                             <p>mr.ferreira@mrferreira.com</p>
                             <p>example@gmail.com</p>
                         </div>
@@ -95,7 +95,7 @@ const Contact = () => {
                     <input
                         type="text"
                         name="name"
-                        placeholder="Your Name"
+                        placeholder="Digite seu nome"
                         className="input"
                         onChange={(e) => setName(e.target.value)}
                         value={name}
@@ -103,7 +103,7 @@ const Contact = () => {
                     <input
                         type="email"
                         name="email"
-                        placeholder="Your Email"
+                        placeholder="Digite seu e-mail"
                         className="input"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
@@ -111,13 +111,13 @@ const Contact = () => {
                     <textarea 
                         name="message" 
                         className="input" 
-
+                        placeholder="Envie uma mensagem"
                         rows="10"
                         onChange={(e) => setMessage(e.target.value)}
                         value={message}
                     />
 
-                    <input type="submit" value="send message" className="btn" />
+                    <input type="submit" value="Enviar mensagem" className="btn" />
                 </form>
 
             </div>

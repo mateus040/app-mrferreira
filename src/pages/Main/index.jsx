@@ -48,9 +48,9 @@ const Main = () => {
             <Contact />
           </section>
 
-          <section className="brands">
+          {/*<section className="brands">
             <Brands />
-          </section>
+  </section>*/}
         </MainLayout>
       </div>
 
